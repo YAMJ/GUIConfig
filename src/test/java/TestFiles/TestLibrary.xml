@@ -1,0 +1,22 @@
+<libraries>
+    <library>
+        <path>T:\TV Shows\</path>
+        <playerpath>Media Player Path</playerpath>
+        <exclude name="Different Exclude" />
+        <description>TV Shows Library</description>
+    </library>
+
+    <library>
+        <path>S:\Movies\</path>
+        <playerpath>Media Player Path</playerpath>
+        <description>Movie Library</description>
+        <prebuf>99</prebuf>
+    </library>
+
+    <library>
+        <path>M:\Home Movies\</path>
+        <playerpath>Media Player Path</playerpath>
+        <description>Home Movies</description>
+        <scrapeLibrary>false</scrapeLibrary>
+    </library>
+</libraries>

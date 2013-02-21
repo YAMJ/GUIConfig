@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+
+# Application Files #
+*.log
+TomyScreens/*
+guiconfig.properties
