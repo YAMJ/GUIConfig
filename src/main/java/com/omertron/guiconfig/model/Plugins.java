@@ -18,7 +18,7 @@ import org.jsoup.nodes.Element;
 public class Plugins {
     private static final String PLUGIN_WEB_PAGE = "http://code.google.com/p/moviejukebox/wiki/Plugins";
 
-    private List<PluginInfo> plugins = new ArrayList<PluginInfo>();
+    private List<PluginInfo> plugins = new ArrayList<>();
 
     /**
      * Get the list of plugins

@@ -1,6 +1,6 @@
 package com.omertron.guiconfig.model;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -102,9 +102,6 @@ public class VersionInfo {
      * @return
      */
     public boolean isValid() {
-        if (StringUtils.isNotBlank(url) && StringUtils.isNotBlank(version) && revision > 0) {
-            return true;
-        }
-        return false;
+        return StringUtils.isNotBlank(url) && StringUtils.isNotBlank(version) && revision > 0;
     }
 }

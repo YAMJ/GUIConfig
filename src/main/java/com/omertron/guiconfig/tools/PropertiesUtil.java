@@ -1,10 +1,8 @@
 package com.omertron.guiconfig.tools;
 
 import com.omertron.guiconfig.GuiConfig;
-import java.io.FileNotFoundException;
-import static org.apache.commons.lang.StringUtils.isBlank;
-
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +17,8 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import org.apache.log4j.Logger;
 
 public class PropertiesUtil {
@@ -64,16 +62,16 @@ public class PropertiesUtil {
         }
         return true;
     }
-    
+
     /**
      * Save properties to a file
      * @param propertyFilename
-     * @return 
+     * @return
      */
     public static boolean savePropertyFile(String propertyFilename, String propertyComments) {
         FileOutputStream fos = null;
         Writer writer = null;
-        
+
         try {
             LOGGER.info("Saving to property file " + propertyFilename);
             fos = new FileOutputStream(propertyFilename);
@@ -92,7 +90,7 @@ public class PropertiesUtil {
             } catch (IOException error) {
                 // Ignore
             }
-            
+
             try {
                 writer.close();
             } catch (IOException error) {
@@ -104,7 +102,7 @@ public class PropertiesUtil {
     /**
      * Get string value of a key
      * @param key
-     * @return 
+     * @return
      */
     public static String getProperty(String key) {
         return guiConfigProperties.getProperty(key);
@@ -114,7 +112,7 @@ public class PropertiesUtil {
      * Get string value of a key with default value
      * @param key
      * @param defaultValue
-     * @return 
+     * @return
      */
     public static String getProperty(String key, String defaultValue) {
         return guiConfigProperties.getProperty(

@@ -7,7 +7,6 @@ import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,7 +16,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -67,8 +65,6 @@ public class DOMHelper {
         }
 
         parentElement.appendChild(child);
-
-        return;
     }
 
     /**
@@ -86,8 +82,6 @@ public class DOMHelper {
         child.appendChild(text);
         child.setAttribute(attribName, attribValue);
         parentElement.appendChild(child);
-
-        return;
     }
 
     /**
@@ -194,7 +188,7 @@ public class DOMHelper {
     /**
      * Write the Document out to a file using nice formatting
      * @param doc   The document to save
-     * @param localFile The file to write to
+     * @param localFilename The file to write to
      * @return
      */
     public static boolean writeDocumentToFile(Document doc, String localFilename) {

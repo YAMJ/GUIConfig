@@ -89,6 +89,11 @@ public class GuiConfig {
 
     /**
      * Write a default command file (OS dependant)
+     * @param cmdFilename
+     * @param cmdPath
+     * @param library
+     * @param videoPath
+     * @param pauseAtEnd
      */
     public void writeCmdFile(String cmdFilename, String cmdPath, String library, String videoPath, boolean pauseAtEnd) {
         File file = new File(cmdFilename);
@@ -177,7 +182,6 @@ public class GuiConfig {
     /**
      * Save our properties file
      *
-     * @param createEmptyFile
      */
     public void writeGuiPropertyFile() {
         PropertiesUtil.savePropertyFile(GUI_PROPERTY_FILENAME, "Gui Config Property File");
@@ -238,7 +242,6 @@ public class GuiConfig {
      * the release version (from downloads) - Get the snapshot version (from
      * source)
      *
-     * @return
      */
     public static void getYamjVersionInfo() {
         // TODO: Search the Download page

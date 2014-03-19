@@ -9,3 +9,4 @@
 *.log
 TomyScreens/*
 guiconfig.properties
+/target/

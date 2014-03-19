@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -19,9 +19,9 @@ import org.apache.log4j.Logger;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    private static final Logger LOGGER = Logger.getLogger(GuiConfig.class);
+    private static final Logger LOG = Logger.getLogger(GuiConfig.class);
     private static LibraryInfo guiLibrary = new LibraryInfo();  // Used to temorarily store the library details
-    private static DefaultTableModel modelViewLibraries = new DefaultTableModel();
+    private static final DefaultTableModel MV_LIBRARIES = new DefaultTableModel();
 
     /**
      * Creates new form MainWindow
@@ -30,7 +30,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
 
         // Add the column names to the table
-        modelViewLibraries.setColumnIdentifiers(new String[]{"Path", "Player Path", "Exclude", "Description", "Prebuf", "Scrape Library"});
+        MV_LIBRARIES.setColumnIdentifiers(new String[]{"Path", "Player Path", "Exclude", "Description", "Prebuf", "Scrape Library"});
 
 //        textPath.getDocument().addDocumentListener(new DocumentListener() {
 //
@@ -68,18 +68,18 @@ public class MainWindow extends javax.swing.JFrame {
         guiLibrary.setPlayerPath(textPlayerPath.getText());
         guiLibrary.setDescription(null);
         guiLibrary.setScrapeLibrary(Boolean.TRUE);
-        
+
         // Check that the library is valid before we add it.
         if (guiLibrary.isValid()) {
             // Add the library to the array
-            LOGGER.info("Adding library to array");
+            LOG.info("Adding library to array");
             GuiConfig.libraries.addLibrary(guiLibrary);
-            modelViewLibraries.addRow(new String[]{guiLibrary.getPath(), guiLibrary.getPlayerPath(), guiLibrary.getExclude(), guiLibrary.getDescription(), guiLibrary.getPrebuf(), String.valueOf(guiLibrary.isScrapeLibrary())});
+            MV_LIBRARIES.addRow(new String[]{guiLibrary.getPath(), guiLibrary.getPlayerPath(), guiLibrary.getExclude(), guiLibrary.getDescription(), guiLibrary.getPrebuf(), String.valueOf(guiLibrary.isScrapeLibrary())});
             clearEntry();
             updateLibraryCounter();
         } else {
             // Library is not valid
-            LOGGER.info("Library entry is not valid");
+            LOG.info("Library entry is not valid");
 
             StringBuilder sb = new StringBuilder("The library etry is not valid\nPlease enter a ");
             if (StringUtils.isBlank(guiLibrary.getPath())) {
@@ -100,7 +100,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void saveLibrary() {
         // Save all the library entries
-        LOGGER.info("Saving library");
+        LOG.info("Saving library");
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/omertron/guiconfig/images/add.png"))); // NOI18N
     }
 
@@ -139,15 +139,15 @@ public class MainWindow extends javax.swing.JFrame {
         GuiConfig.libraries.clear();
         updateLibraryCounter();
 
-        LOGGER.info("Clearing " + modelViewLibraries.getRowCount() + " library entries");
-        modelViewLibraries.setRowCount(0);
+        LOG.info("Clearing " + MV_LIBRARIES.getRowCount() + " library entries");
+        MV_LIBRARIES.setRowCount(0);
     }
 
     private void openLink(String stringUrl) {
         try {
             openLink(new URI(stringUrl));
         } catch (URISyntaxException ex) {
-            LOGGER.warn("Invalid URL: " + stringUrl);
+            LOG.warn("Invalid URL: " + stringUrl);
         }
     }
 
@@ -156,7 +156,7 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 Desktop.getDesktop().browse(newUri);
             } catch (IOException ex) {
-                LOGGER.warn("Unable to open web browser!");
+                LOG.warn("Unable to open web browser!");
             }
         }
     }
@@ -570,7 +570,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 tabPanelLibraries.addTab("Add Library", tabAddLibrary);
 
-                tableViewLibraries.setModel(modelViewLibraries);
+                tableViewLibraries.setModel(MV_LIBRARIES);
                 tableViewLibraries.setColumnSelectionAllowed(true);
                 tableViewLibraries.getTableHeader().setReorderingAllowed(false);
                 jScrollPane2.setViewportView(tableViewLibraries);
@@ -925,7 +925,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonClearAllActionPerformed
 
     private void textPathPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_textPathPropertyChange
-        LOGGER.info("1Path changed to '" + textPath.getText() + "'");
+        LOG.info("1Path changed to '" + textPath.getText() + "'");
     }//GEN-LAST:event_textPathPropertyChange
 
     private void textPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPathActionPerformed
@@ -954,14 +954,11 @@ public class MainWindow extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException |
+                InstantiationException |
+                IllegalAccessException |
+                javax.swing.UnsupportedLookAndFeelException ex) {
+            LOG.warn(ex);
         }
         //</editor-fold>
 

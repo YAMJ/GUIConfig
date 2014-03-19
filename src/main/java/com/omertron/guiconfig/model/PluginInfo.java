@@ -159,7 +159,6 @@ public class PluginInfo {
             this.url = new URL(sUrl);
         } catch (MalformedURLException ex) {
             LOGGER.info("Invalid URL: " + sUrl);
-            return;
         }
     }
 

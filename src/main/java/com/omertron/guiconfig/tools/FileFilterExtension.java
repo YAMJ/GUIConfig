@@ -8,12 +8,12 @@ import java.io.File;
  */
 public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
 
-    private String extension;
-    private String description;
+    private final String extension;
+    private final String description;
 
     /**
      * Create the custom filter with just the extension
-     * @param extension 
+     * @param extension
      */
     public FileFilterExtension(String extension) {
         if (extension.startsWith(".")) {
@@ -21,14 +21,14 @@ public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
         } else {
             this.extension = "." + extension;
         }
-        
+
         description = "All " + extension.substring(1).toUpperCase() + " files";
     }
 
     /**
      * Create the custom filter with the extension and the description
      * @param extension
-     * @param description 
+     * @param description
      */
     public FileFilterExtension(String extension, String description) {
         if (extension.startsWith(".")) {
@@ -36,7 +36,7 @@ public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
         } else {
             this.extension = "." + extension;
         }
-        
+
         this.description = description + " (*" + extension + ")";
     }
 

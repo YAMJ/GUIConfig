@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
 public class Libraries {
     private static final Logger LOGGER = Logger.getLogger(GuiConfig.class);
 
-    private List<LibraryInfo> libraries = new ArrayList<LibraryInfo>();
+    private List<LibraryInfo> libraries = new ArrayList<>();
 
     /**
      * Get the list of library entries
@@ -75,6 +75,8 @@ public class Libraries {
 
     /**
      * Read the library file and store it in a library object
+     * @param libraryFilename
+     * @return
      */
     public boolean readLibraryFile(String libraryFilename) {
         File libraryFile = new File(libraryFilename);
@@ -92,10 +94,7 @@ public class Libraries {
         } catch (IOException ex) {
             LOGGER.error("Failed to read " + libraryFilename + ": " + ex.getLocalizedMessage());
             return false;
-        } catch (ParserConfigurationException ex) {
-            LOGGER.error("Failed to read " + libraryFilename + ": " + ex.getLocalizedMessage());
-            return false;
-        } catch (SAXException ex) {
+        } catch (ParserConfigurationException | SAXException ex) {
             LOGGER.error("Failed to read " + libraryFilename + ": " + ex.getLocalizedMessage());
             return false;
         }
@@ -158,6 +157,7 @@ public class Libraries {
 
     /**
      * Persist a library object to disk
+     * @param libraryFilename
      */
     public void writeLibraryFile(String libraryFilename) {
         File libraryFile = new File(libraryFilename);

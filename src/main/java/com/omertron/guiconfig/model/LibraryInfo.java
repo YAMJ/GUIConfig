@@ -1,7 +1,7 @@
 package com.omertron.guiconfig.model;
 
 import com.omertron.guiconfig.tools.DOMHelper;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -225,6 +225,7 @@ public class LibraryInfo {
 
     /**
      * Return the library info object as a DOM element
+     * @param docLibrary
      * @return
      */
     public Element getLibraryAsElement(Document docLibrary) {

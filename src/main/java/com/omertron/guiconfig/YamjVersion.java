@@ -1,7 +1,11 @@
 package com.omertron.guiconfig;
 
 import com.omertron.guiconfig.model.VersionInfo;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
@@ -136,7 +140,7 @@ public class YamjVersion {
 
         try {
             reader = new BufferedReader(new FileReader(yamjVersionFile));
-            String text = null;
+            String text;
 
             // repeat until all lines is read
             while ((text = reader.readLine()) != null) {
